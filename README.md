@@ -1,4 +1,4 @@
-#Juicypika App
+Juicypika App
 
 My Unofficial Official Website where I put together things from all my entertainment/social media accounts
 
