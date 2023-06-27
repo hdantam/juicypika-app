@@ -1,8 +1,8 @@
-# Juicypika App
+# Juicypika
 
 ### A Website of all the Things I Love 
 
-This is my unofficial official Website where I put together things from all my entertainment/social media accounts I use, games I love playing, and other hobbies I enjoy. This will eventually be a collection of all the stuff I love/have loved to do online for the past decade or more.
+This is my unofficial official website where I put together things from all my entertainment/social media accounts I use, games I love playing, and other hobbies I enjoy (aptly named after the username I use in all of them). This will eventually be a collection of all the stuff I love/have loved to do online for the past decade or more.
 
 ### The Pages
 There are 7 main pages I will have set up involving making API or database calls to gather information about my accounts and usage. Those include:
@@ -17,4 +17,4 @@ There are 7 main pages I will have set up involving making API or database calls
 
 
 ### Deployment
-This app will likely not deploy for a few weeks until I have at least half of the pages I want to include running and going. 
+This app will likely not deploy for a few weeks until I have at least half of the pages I want to include running and going. I have restarted on this project multiple times but I finally feel like I have gotten a good enough start to keep me motivated on it.
