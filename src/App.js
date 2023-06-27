@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import {juicypika, mal, lol, genshin, art, youtube, twitter, discord, contactme} from './imgs/index.js';
+import Icon from './components/icon.js';
+import Header from'./components/header';
+import { useState } from 'react';
 
 function App() {
+  const [isDark, setDark] = useState(false);
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="juicypika" id="juicypika">
+      <Header name="Juicypika" img={juicypika}/>
+      <div className="body">
+        <div className="icon-box">
+        <Icon link={'/mal'} img={mal} name='MyAnimeList'/>
+        <Icon link={'/lol'} img={lol} name='League of Legends'/>
+        <Icon link={'/genshin'} img={genshin} name='Genshin Impact'/>
+        <Icon link={'/art'} img={art} name='Art'/>
+        <Icon link={'/twitter'} img={twitter} name='Twitter'/>
+        <Icon link={'/youtube'} img={youtube} name='Youtube'/>
+        <Icon link={'/discord'} img={discord} name='Discord'/>
+        <Icon link={'contact-me'} img={contactme} name='Contact Me'/>
+        </div>
+      </div>
     </div>
   );
 }
