@@ -15,7 +15,7 @@ function App() {
       <Header name="Juicypika" img={juicypika}/>
       <div className="body">
         <div className="icon-box">
-        <Icon link={'/mal'} img={mal} name='MyAnimeList'/>
+        <Icon link={'/mal/watching'} img={mal} name='MyAnimeList'/>
         <Icon link={'/lol'} img={lol} name='League of Legends'/>
         <Icon link={'/genshin'} img={genshin} name='Genshin Impact'/>
         <Icon link={'/art'} img={art} name='Art'/>

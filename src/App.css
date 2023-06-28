@@ -161,19 +161,24 @@
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding: 2%;
   margin-bottom: 20px;
 }
 
 #currently-watching {
   display:inline-block;
-  margin-left: 36%;
-  padding: 15px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  width: max(20%, 200px);
   border-radius: 25px;
-  margin-bottom: 3%;
-  margin-top: 2%;
-  font-size: 1.1em;
+  font-size: max(1.1vw, 11px);
   box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.1) inset;
 }
 
+#box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: max(2%, 20px);
+  margin-top: 1%;
+}

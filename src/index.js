@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import MyAnimeList from './routes/myanimelist';
+import MyAnimeList from './routes/MAL/myanimelist';
 import LeagueOfLegends from './routes/leagueoflegends';
 import GenshinImpact from './routes/genshinimpact';
 import Art from './routes/art';
+import AllAnime from './routes/MAL/allanime';
+import WatchingAnime from './routes/MAL/watchinganime';
 import ErrorPage from './routes/errorpage';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 
 const router = createBrowserRouter([
     {
@@ -19,7 +22,17 @@ const router = createBrowserRouter([
     {
       path: "/mal",
       element: <MyAnimeList/>,
-      errorElement: <ErrorPage/>
+      errorElement: <ErrorPage/>,
+      children: [
+        {
+          path: "/mal/all",
+          element: <AllAnime />,
+        },
+        {
+          path: "/mal/watching",
+          element: <WatchingAnime />,
+        },
+      ]
     },
     {
       path: "/lol",

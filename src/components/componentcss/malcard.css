@@ -6,10 +6,15 @@
     background-color: rgb(249, 252, 255);
     box-shadow: 0 0 5px 3px rgb(0,0,0,0.1);
     transition: all .5s ease;
+    margin-bottom: 5%;
 }
 
 #mal-card:hover {
     transform: scale(1.02);
     box-shadow: 0 0 7px 10px rgb(0,0,0,0.1);
+}
+
+#mal-title-small {
+    overflow: hidden;
 }
 
