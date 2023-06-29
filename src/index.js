@@ -7,10 +7,9 @@ import LeagueOfLegends from './routes/leagueoflegends';
 import GenshinImpact from './routes/genshinimpact';
 import Art from './routes/art';
 import AllAnime from './routes/MAL/allanime';
-import WatchingAnime from './routes/MAL/watchinganime';
 import ErrorPage from './routes/errorpage';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 
 
 const router = createBrowserRouter([
@@ -25,12 +24,11 @@ const router = createBrowserRouter([
       errorElement: <ErrorPage/>,
       children: [
         {
-          path: "/mal/all",
+          path: "/mal/search",
+          loader: async () => {
+            return fetch('http://localhost:3007/animelist/all');
+          },
           element: <AllAnime />,
-        },
-        {
-          path: "/mal/watching",
-          element: <WatchingAnime />,
         },
       ]
     },
@@ -50,6 +48,13 @@ const router = createBrowserRouter([
       errorElement: <ErrorPage/>
     }
 ]);
+
+async function loadAnimeList() {
+  fetch('http://localhost:3007/animelist')
+  .then(result => {
+    return result;
+  });
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

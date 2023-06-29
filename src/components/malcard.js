@@ -1,36 +1,33 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import './componentcss/malcard.css'
+import React, { useContext, useEffect } from "react";
+import '../App.css';
+import { useOutletContext } from "react-router-dom";
 
 
 function MalCard(props) {
-    const [title, setTitle] = useState('');
-    const [img, setImg] = useState('');
-    const [id, setId] = useState(0);
-    const [score, setScore] = useState(0);
-    const [status, setStatus] = useState('');
-    const [show, setShow] = useState('');
-    const [cardType, setCardType] = useState('row');
+    const title = props.title;
+    const img = props.img;
+    const id = props.id;
+    const score = props.score;
+    const status = props.status;
 
+
+    const [cardMode, setCardMode] = useOutletContext();
 
     useEffect(() => {
-        setTitle(props.title);
-        setImg(props.img);
-        setId(props.id);
-        setScore(props.score);
-        setStatus(props.status);
-        setShow(props.show);
-        setCardType(props.type);
-    }, [props.title, props.img, props.id, props.score, props.status, props.show]);
+        //console.log(`cardMode in malcard is:${cardMode}`);
+    }, [cardMode])
+
 
 
     return(
-        <div id="mal-card">
+        <div id="mal-card" className={cardMode?'mal-card':'no-card'}>
             <a href={`https://myanimelist.net/anime/${id}`}><img id='mal-img' src={img} alt={title}></img></a>
-            <p id='mal-title-small'><b>{title}</b></p>
-            {score != 0 && <p>Score: {score}</p>}
-            {score == 0 && show == 'all' && <p>Unscored</p>}
-            {show == 'all' && <p>Status: {status}</p>}
+            <div id='mal-title-small' className={cardMode?'mal-title-small':'mal-title-small-nocard'}>
+                <p><b>{title}</b></p>
+            </div>
+            {score !== 0 && <p id='mal-score'>Score: {score}</p>}
+            {score === 0 && <p id='mal-score'>Unscored</p>}
+            <p id='mal-status'>{status}</p>
         </div>
     );
 }

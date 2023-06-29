@@ -9,6 +9,10 @@ import discord from './site-icons/discord.png';
 import aboutme from './aboutme.png';
 import contactme from './site-icons/contactme.png';
 import home from './home.png'
+import row from './nav/row.png';
+import col from './nav/col.png';
+
+
 
 
 export {
@@ -22,5 +26,7 @@ export {
     discord,
     aboutme,
     contactme,
-    home
+    home,
+    row,
+    col
 }
