@@ -32,10 +32,10 @@ function AnimeInfo() {
                 <div className="anime-info">
                     <div id='anime-info-top'>
                         <div id='title-alt'>
-                        <h2>{title}</h2>
-                        <p style={{fontSize: '10px'}}>Alternate titles: {`${mal.alternative_titles.en}, ${mal.alternative_titles.ja}`}</p>
+                            <h2>{title}</h2>
+                            <p style={{fontSize: '10px'}}>Alternate titles: {`${mal.alternative_titles.en}, ${mal.alternative_titles.ja}`}</p>
                         </div>
-                        <div id='mal-score'>
+                        <div id='mal-mean-score'>
                             <h3>MAL Score</h3>
                             <h3>{mal.mean}</h3>
                         </div>

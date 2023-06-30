@@ -346,12 +346,21 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 1px solid black;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 1%;
   margin: 2%;
   border-radius: 20px;
+}
+
+#title-alt {
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 1%;
+  width: 40%;
+  max-width: 70%;
+  min-width: 300px;
+  text-align: center;
 }
 
 #mal-image-synopsis {
@@ -367,9 +376,16 @@
   
 }
 
+#mal-mean-score, #my-score {
+  border: 1px solid black;
+  text-align: center;
+  padding: 0.7%;
+  border-radius: 20px;
+  min-width: 100px;
+}
+
 #head-img {
   width: max(15%, 170px);
-
   margin-right: 10px;
 
 }

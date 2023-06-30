@@ -15,6 +15,10 @@ There are 7 main pages I will have set up involving making API or database calls
 - Youtube (unsure yet)
 - Discord (maybe bots I make and messaging features here, and possibly link to any future servers I make)
 
+In addition to these there will also be a way for people who come to this site to contact me with any requests/questions. 
+
+### Frameworks/Libraries/Languages
+This website was made using React along with Node (express) being used for backend calls to external APIs. 
 
 ### Deployment
 This app will likely not deploy for a few weeks until I have at least half of the pages I want to include running and going. I have restarted on this project multiple times but I finally feel like I have gotten a good enough start to keep me motivated on it.
