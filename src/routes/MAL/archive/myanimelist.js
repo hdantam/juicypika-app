@@ -19,6 +19,7 @@ function MyAnimeList() {    //#3054a4 = mal color
     }, [])
 
 
+
     useEffect(() => {
         function changeCardStyle() {
             let malb = document.getElementById('malbody');

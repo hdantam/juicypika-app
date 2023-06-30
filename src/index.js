@@ -9,6 +9,7 @@ import Art from './routes/art';
 import AllAnime from './routes/MAL/allanime';
 import ErrorPage from './routes/errorpage';
 import reportWebVitals from './reportWebVitals';
+import AnimeInfo from './components/animeinfo';
 import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 
 
@@ -28,7 +29,28 @@ const router = createBrowserRouter([
           loader: async () => {
             return fetch('http://localhost:3007/animelist/all');
           },
+          errorElement: <ErrorPage/>,
           element: <AllAnime />,
+          children: [
+            {
+              path: "/mal/search/:animeid",
+              element: <AnimeInfo/>,
+              loader: async ({params}) => {
+                console.log(`params.animeid is: ${params.animeid}`)
+                return fetch('http://localhost:3007/animeid', {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "Content-Length": "<calculated when request is sent>"
+                  },
+                  body: JSON.stringify({
+                    "animeid": params.animeid,
+                  })
+                })
+              },
+              errorElement: <ErrorPage/>,
+            },
+          ]
         },
       ]
     },

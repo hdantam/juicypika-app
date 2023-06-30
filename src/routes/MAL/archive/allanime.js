@@ -3,8 +3,6 @@ import '../../App.css';
 import MalCard from '../../components/malcard';
 import { useOutletContext } from 'react-router-dom';
 import { useLoaderData } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 
 
 //#3054a4
@@ -15,11 +13,7 @@ function AllAnime() {
     const input = useOutletContext()[1];
     const status = useOutletContext()[2];
     const scoreSort = useOutletContext()[3];
-    const [sort, setSort] = useState(scoreSort);
-
-    useEffect(() => {
-        document.body.style.overflow = 'scroll';
-    })
+    const [sort, setSort] = useState(scoreSort)
 
     useEffect(() => {
     }, [input, status])
@@ -44,20 +38,19 @@ function AllAnime() {
 
 
     return (
-        <div id = 'total-mal'>
+        <div>
             <div id='malbody' className={cardMode?"malbody":"nocard"}>
                 {
                     maldat.map((obj) => {
                         if (input != '' && obj.node.title.toLowerCase().includes(input.toLowerCase()) && ((status!='All')?obj.list_status.status==status:true)) {
-                            return <Link  to={`/mal/search/${obj.node.id}`} state={{object: obj}}><MalCard key={obj.node.id} id={obj.node.id} title={obj.node.title} img={obj.node.main_picture.medium} status={obj.list_status.status} score={obj.list_status.score} /></Link>
+                            return <MalCard key={obj.node.id} id={obj.node.id} title={obj.node.title} img={obj.node.main_picture.medium} status={obj.list_status.status} score={obj.list_status.score} />
                         } 
                         else if (input == '' && ((status!='All')?obj.list_status.status==status:true)) {
-                            return <Link  to={`/mal/search/${obj.node.id}`} state={{object: obj}}><MalCard key={obj.node.id} id={obj.node.id} title={obj.node.title} img={obj.node.main_picture.medium} status={obj.list_status.status} score={obj.list_status.score}/></Link>
+                            return <MalCard key={obj.node.id} id={obj.node.id} title={obj.node.title} img={obj.node.main_picture.medium} status={obj.list_status.status} score={obj.list_status.score}/>
                         }
                     })
                 }
             </div>
-            <Outlet/>
         </div>
     );
 }

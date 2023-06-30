@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import '../App.css';
 import { useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 function MalCard(props) {
@@ -21,7 +22,7 @@ function MalCard(props) {
 
     return(
         <div id="mal-card" className={cardMode?'mal-card':'no-card'}>
-            <a href={`https://myanimelist.net/anime/${id}`}><img id='mal-img' src={img} alt={title}></img></a>
+            <img id='mal-img' src={img} alt={title}></img>
             <div id='mal-title-small' className={cardMode?'mal-title-small':'mal-title-small-nocard'}>
                 <p><b>{title}</b></p>
             </div>
