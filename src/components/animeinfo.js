@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData, useOutletContext } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import {capitalize}  from "./helperfunctions";
 
 function AnimeInfo() {
     const navigate = useNavigate();
-    const location = useLocation();
-
     const mal = useLoaderData();
-
-    const id  = location.state.object.node.id;
-    const title = location.state.object.node.title;
-    const img = location.state.object.node.main_picture.large;
-    const status = location.state.object.list_status.status;
-    const score = location.state.object.list_status.score;
 
     useEffect(() => {
         document.body.style.overflow = 'hidden';
@@ -22,8 +14,9 @@ function AnimeInfo() {
 
     function onDismiss() {
         document.body.style.overflow = 'scroll';
-        navigate(-1);
+        navigate('/mal/search');
     }
+
 
     return (
         <div className="modalDiv">
@@ -32,21 +25,26 @@ function AnimeInfo() {
                 <div className="anime-info">
                     <div id='anime-info-top'>
                         <div id='title-alt'>
-                            <h2>{title}</h2>
-                            <p style={{fontSize: '10px'}}>Alternate titles: {`${mal.alternative_titles.en}, ${mal.alternative_titles.ja}`}</p>
+                            <h2>{mal.data().title}</h2>
+                            <p style={{fontSize: '10px'}}>Alternate titles: {`${mal.data().alternative_titles.en}, ${mal.data().alternative_titles.ja}`}</p>
                         </div>
                         <div id='mal-mean-score'>
                             <h3>MAL Score</h3>
-                            <h3>{mal.mean}</h3>
+                            <h3>{mal.data().malscore}</h3>
                         </div>
                         <div id='my-score'>
                             <h3>My Score</h3>
-                            <h3>{score}</h3>
+                            <h3>{mal.data().list_status.score}</h3>
+                        </div>
+                        <div id='misc-info'>
+                            <h4>{capitalize(mal.data().start_season)}</h4>
+                            <h4>Status: {capitalize(mal.data().list_status.status.replace("_", " "))}</h4>
+                            <h4>Episodes: {mal.data().num_episodes}</h4>
                         </div>
                     </div>
                     <div id='mal-image-synopsis'>
-                        <img id='head-img' src={img} alt="anime-image"></img>
-                        <h4 id='synopsis'>{mal.synopsis}</h4>
+                        <img id='head-img' src={mal.data().main_picture.medium} alt="anime-image"></img>
+                        <h4 id='synopsis'>{mal.data().synopsis}</h4>
                     </div>
 
 
@@ -56,4 +54,5 @@ function AnimeInfo() {
 
     );
 }
+
 export default AnimeInfo;

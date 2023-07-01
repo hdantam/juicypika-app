@@ -11,6 +11,9 @@ import ErrorPage from './routes/errorpage';
 import reportWebVitals from './reportWebVitals';
 import AnimeInfo from './components/animeinfo';
 import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
+import { myAnimeList, animeId } from './firebase';
+import { db } from './firebase';
+import {collection, doc, getDocs, getDoc} from 'firebase/firestore';
 
 
 const router = createBrowserRouter([
@@ -27,7 +30,8 @@ const router = createBrowserRouter([
         {
           path: "/mal/search",
           loader: async () => {
-            return fetch('http://localhost:3007/animelist/all');
+            const querySnapshot = await getDocs(collection(db, 'MyAnimeList'));
+            return querySnapshot;
           },
           errorElement: <ErrorPage/>,
           element: <AllAnime />,
@@ -36,17 +40,9 @@ const router = createBrowserRouter([
               path: "/mal/search/:animeid",
               element: <AnimeInfo/>,
               loader: async ({params}) => {
-                console.log(`params.animeid is: ${params.animeid}`)
-                return fetch('http://localhost:3007/animeid', {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                    "Content-Length": "<calculated when request is sent>"
-                  },
-                  body: JSON.stringify({
-                    "animeid": params.animeid,
-                  })
-                })
+                const docRef = doc(db, "MyAnimeList", `${params.animeid}`);
+                const docSnap = await getDoc(docRef);
+                return docSnap;
               },
               errorElement: <ErrorPage/>,
             },
@@ -71,12 +67,6 @@ const router = createBrowserRouter([
     }
 ]);
 
-async function loadAnimeList() {
-  fetch('http://localhost:3007/animelist')
-  .then(result => {
-    return result;
-  });
-}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -376,6 +376,19 @@
   
 }
 
+#misc-info {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+#misc-info h4 {
+  font-size: 15px;
+  padding: 4.5%;
+  margin: 0;
+}
+
 #mal-mean-score, #my-score {
   border: 1px solid black;
   text-align: center;
