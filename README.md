@@ -18,7 +18,7 @@ There are 7 main pages I will have set up involving making API or database calls
 In addition to these there will also be a way for people who come to this site to contact me with any requests/questions. 
 
 ### Frameworks/Libraries/Languages
-This website was made using React along with Node (express) being used for backend calls to external APIs. The styling with CSS is being done entirely by me without the use of any external css frameworks just so I can get a better hang of its functions. 
+This website was made using React along with Firebase being used for backend database and cloud function calls to external APIs. The styling with CSS is being done entirely by me without the use of any external css frameworks just so I can get a better hang of its functions. 
 
 ### Deployment
 This app will likely not deploy for a few weeks until I have at least half of the pages I want to include running and going. I have restarted on this project multiple times but I finally feel like I have gotten a good enough start to keep me motivated on it.
