@@ -11,6 +11,7 @@ import contactme from './site-icons/contactme.png';
 import home from './home.png'
 import row from './nav/row.png';
 import col from './nav/col.png';
+import backButton from './nav/backButton.png';
 
 
 
@@ -28,5 +29,6 @@ export {
     contactme,
     home,
     row,
-    col
+    col,
+    backButton
 }
