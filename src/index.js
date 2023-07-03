@@ -13,7 +13,7 @@ import AnimeInfo from './components/animeinfo';
 import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 import { myAnimeList, animeId } from './firebase';
 import { db } from './firebase';
-import {collection, doc, getDocs, getDoc} from 'firebase/firestore';
+import {collection, doc, getDocs, getDoc, get} from 'firebase/firestore';
 
 
 const router = createBrowserRouter([
@@ -30,8 +30,11 @@ const router = createBrowserRouter([
         {
           path: "/mal/search",
           loader: async () => {
-            const querySnapshot = await getDocs(collection(db, 'MyAnimeList'));
-            return querySnapshot;
+            let ret = await getDoc(doc(db, 'MyAnimeListTest', 'qbSJ8shEgtJ9hNkIcaZY')).then(resp => {
+              return resp;
+            })
+            return ret;
+            //return querySnapshot;
           },
           errorElement: <ErrorPage/>,
           element: <AllAnime />,
@@ -40,9 +43,16 @@ const router = createBrowserRouter([
               path: "/mal/search/:animeid",
               element: <AnimeInfo/>,
               loader: async ({params}) => {
+                /*
                 const docRef = doc(db, "MyAnimeList", `${params.animeid}`);
                 const docSnap = await getDoc(docRef);
-                return docSnap;
+                return docSnap;*/
+                const docRef = doc(db, 'MyAnimeListTest', 'qbSJ8shEgtJ9hNkIcaZY');
+                const snap = await getDoc(docRef).then(resp => {
+                  const ret = resp.data().data.find(obj => obj.id == params.animeid);
+                  return ret;
+                })
+                return snap;
               },
               errorElement: <ErrorPage/>,
             },

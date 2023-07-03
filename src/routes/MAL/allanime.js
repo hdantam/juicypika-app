@@ -5,13 +5,17 @@ import { useOutletContext } from 'react-router-dom';
 import { useLoaderData } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { doc } from 'firebase/firestore';
+import { db } from '../../firebase';
+import { orderBy, query, getDoc } from 'firebase/firestore';
+import { onSnapshot } from 'firebase/firestore';
 
 
 
 //#3054a4
 function AllAnime() {
     const mal = useLoaderData();
-    const [maldat, setMalDat] = useState(mal.docs);
+    const [maldat, setMalDat] = useState([]);
     const cardMode = useOutletContext()[0];
     const input = useOutletContext()[1];
     const status = useOutletContext()[2];
@@ -23,7 +27,18 @@ function AllAnime() {
     })
 
     useEffect(() => {
-    }, [input, status, maldat])
+        setMalDat(mal.data().data);
+        /*
+        async function getmaldat() {
+            await getDoc(doc(db, 'MyAnimeListTest', '1')).then(snap => {
+                setMalDat(snap.data().data)
+            })
+        }
+        getmaldat();*/
+    }, [])
+
+    useEffect(() => {
+    }, [input, status])
 
     useEffect(() => {
         setSort(scoreSort);
@@ -33,21 +48,23 @@ function AllAnime() {
     async function sortData() {
         if (scoreSort == 'highlow') {
             /*
-            const q = query(collection(db, 'MyAnimeList'), orderBy('list_status.score', 'desc'))
-            const querySnapshot = await getDocs(q);
-            setMalDat(querySnapshot.docs);*/
+            const q = query(doc(db, 'MyAnimeList', '1'), orderBy('list_status.score', 'desc'))
+            const querySnapshot = await getDoc(q);
+            setMalDat(querySnapshot.data());
+
+            */
             setMalDat(maldat.sort((a, b) => {
-                return b.data().list_status.score - a.data().list_status.score;
+                return b.list_status.score - a.list_status.score;
             }))
         }
         else if (scoreSort == 'lowhigh') {
             /*
-            const q = query(collection(db, 'MyAnimeList'), orderBy('list_status.score', 'asc'))
-            const querySnapshot = await getDocs(q);
-            setMalDat(querySnapshot.docs);*/
-
+            const q = query(doc(db, 'MyAnimeList', '1'), orderBy('list_status.score', 'asc'))
+            const querySnapshot = await getDoc(q);
+            setMalDat(querySnapshot.data());
+*/
             setMalDat(maldat.sort((a, b) => {
-                return a.data().list_status.score - b.data().list_status.score;
+                return a.list_status.score - b.list_status.score;
             }))
         }
     }
@@ -58,11 +75,11 @@ function AllAnime() {
             <div id='malbody' className={cardMode?"malbody":"nocard"}>
                 {
                     maldat.map((obj) => {
-                        if (input != '' && obj.data().title.toLowerCase().includes(input.toLowerCase()) && ((status!='All')?obj.data().list_status.status==status:true)) {
-                            return <Link to={`/mal/search/${obj.id}`}><MalCard key={obj.id} id={obj.id} title={obj.data().title} img={obj.data().main_picture.medium} status={obj.data().list_status.status} score={obj.data().list_status.score} /></Link>
+                        if (input != '' && obj.title.toLowerCase().includes(input.toLowerCase()) && ((status!='All')?obj.list_status.status==status:true)) {
+                            return <Link to={`/mal/search/${obj.id}`}><MalCard key={obj.id} id={obj.id} title={obj.title} img={obj.main_picture.medium} status={obj.list_status.status} score={obj.list_status.score} /></Link>
                         } 
-                        else if (input == '' && ((status!='All')?obj.data().list_status.status==status:true)) {
-                            return <Link to={`/mal/search/${obj.id}`}><MalCard key={obj.id} id={obj.id} title={obj.data().title} img={obj.data().main_picture.medium} status={obj.data().list_status.status} score={obj.data().list_status.score}/></Link>
+                        else if (input == '' && ((status!='All')?obj.list_status.status==status:true)) {
+                            return <Link to={`/mal/search/${obj.id}`}><MalCard key={obj.id} id={obj.id} title={obj.title} img={obj.main_picture.medium} status={obj.list_status.status} score={obj.list_status.score}/></Link>
                         }
                     })
                 }

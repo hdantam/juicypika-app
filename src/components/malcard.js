@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import '../App.css';
 import { useOutletContext } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { capitalize, removeUnderscores } from "./helperfunctions";
 
 
@@ -16,10 +15,7 @@ function MalCard(props) {
     const [cardMode, setCardMode] = useOutletContext();
 
     useEffect(() => {
-        //console.log(`cardMode in malcard is:${cardMode}`);
     }, [cardMode])
-
-
 
     return(
         <div id="mal-card" className={cardMode?'mal-card':'no-card'}>
