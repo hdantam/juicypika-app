@@ -5,10 +5,6 @@ import { useOutletContext } from 'react-router-dom';
 import { useLoaderData } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { doc } from 'firebase/firestore';
-import { db } from '../../firebase';
-import { orderBy, query, getDoc } from 'firebase/firestore';
-import { onSnapshot } from 'firebase/firestore';
 
 
 
@@ -27,7 +23,11 @@ function AllAnime() {
     })
 
     useEffect(() => {
-        setMalDat(mal.data().data);
+        let arr = []
+        for (var key in mal.data()) {
+            arr.push(mal.data()[key])
+        }
+        setMalDat(arr)
         /*
         async function getmaldat() {
             await getDoc(doc(db, 'MyAnimeListTest', '1')).then(snap => {

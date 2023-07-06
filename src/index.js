@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import MyAnimeList from './routes/MAL/myanimelist';
 import LeagueOfLegends from './routes/leagueoflegends';
-import GenshinImpact from './routes/genshinimpact';
+import GenshinImpact from './routes/genshin/genshinimpact';
 import Art from './routes/art';
 import AllAnime from './routes/MAL/allanime';
 import ErrorPage from './routes/errorpage';
@@ -14,7 +14,6 @@ import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 import { myAnimeList, animeId } from './firebase';
 import { db } from './firebase';
 import {collection, doc, getDocs, getDoc, get} from 'firebase/firestore';
-
 
 const router = createBrowserRouter([
     {
@@ -30,11 +29,10 @@ const router = createBrowserRouter([
         {
           path: "/mal/search",
           loader: async () => {
-            let ret = await getDoc(doc(db, 'MyAnimeListTest', 'qbSJ8shEgtJ9hNkIcaZY')).then(resp => {
+            let ret = await getDoc(doc(db, 'MyAnimeListFinal', '1')).then(resp => {
               return resp;
             })
             return ret;
-            //return querySnapshot;
           },
           errorElement: <ErrorPage/>,
           element: <AllAnime />,
@@ -43,13 +41,9 @@ const router = createBrowserRouter([
               path: "/mal/search/:animeid",
               element: <AnimeInfo/>,
               loader: async ({params}) => {
-                /*
-                const docRef = doc(db, "MyAnimeList", `${params.animeid}`);
-                const docSnap = await getDoc(docRef);
-                return docSnap;*/
-                const docRef = doc(db, 'MyAnimeListTest', 'qbSJ8shEgtJ9hNkIcaZY');
+                const docRef = doc(db, 'MyAnimeListFinal', '1');
                 const snap = await getDoc(docRef).then(resp => {
-                  const ret = resp.data().data.find(obj => obj.id == params.animeid);
+                  const ret = resp.data()[params.animeid]
                   return ret;
                 })
                 return snap;
