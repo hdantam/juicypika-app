@@ -12,7 +12,9 @@ import home from './home.png'
 import row from './nav/row.png';
 import col from './nav/col.png';
 import backButton from './nav/backButton.png';
-
+import wanderer from './genshin/wanderer-splash.png';
+import ayaka from './genshin/ayaka-splash.png';
+import fischl from './genshin/fischl-splash.png';
 
 
 
@@ -30,5 +32,8 @@ export {
     home,
     row,
     col,
-    backButton
+    backButton,
+    wanderer,
+    fischl,
+    ayaka
 }
