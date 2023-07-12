@@ -14,6 +14,8 @@ import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 import { myAnimeList, animeId } from './firebase';
 import { db } from './firebase';
 import {collection, doc, getDocs, getDoc, get} from 'firebase/firestore';
+import GenshinChar from './routes/genshin/genshinchar';
+import GenshinHome from './routes/genshin/genshinhome';
 
 const router = createBrowserRouter([
     {
@@ -54,16 +56,60 @@ const router = createBrowserRouter([
         },
       ]
     },
+
+
     {
       path: "/lol",
       element: <LeagueOfLegends/>,
       errorElement: <ErrorPage/>
     },
+
+
     {
       path: "/genshin",
-      element: <GenshinImpact/>,
-      errorElement: <ErrorPage/>
+      element: <GenshinHome/>,
+      errorElement: <ErrorPage/>,
     },
+
+    {
+      path: "/genshin/:server",
+      element: <GenshinImpact/>,
+      loader: async({params}) => {
+        const body = {server: params.server};  
+        let ret = await fetch('https://userinfo-fhegirjy4a-uc.a.run.app ', {
+          method: "POST",
+          /*
+          headers: {
+            "Content-Type": "application/json"
+          },*/
+          body: params.server
+        }).then(resp =>  {
+          return resp.json();
+        });
+        return ret;
+      },
+      /*
+      children: [
+        {
+          path: "/genshin/:server/:id",
+          element: <GenshinChar/>,
+          loader: async({params}) => {
+            console.log(params.id);
+            const body = {id: params.id, server: params.server};
+            return await fetch('http://localhost:3006/genshin', {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(body),
+            }).then(resp => resp.json()).then((resp) => console.log(resp))
+          },
+        },
+      ]
+      */
+    },
+
+
     {
       path: "/art",
       element: <Art/>,

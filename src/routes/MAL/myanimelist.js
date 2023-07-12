@@ -42,7 +42,7 @@ function MyAnimeList() {    //#3054a4 = mal color
 
     return (
         <div id="juicypika">
-            <AppHeader name='MyAnimeList' img={mal}/>
+            <AppHeader name='MyAnimeList' img={mal} link={'/mal/search'}/>
             <div className='body'>
                 <div id="mal-search-header">
                     <div className='mal-toggle'>
