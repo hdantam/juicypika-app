@@ -16,7 +16,7 @@ function GenshinHome() {
             <h2 style={{textAlign: 'center'}}>My Accounts</h2>
             <div className='directory'>
                 <Link to={'/genshin/NA'} className='directory-item'>
-                    <h2 className='region'>NA</h2>
+                    <h2 className='region'>NA (main)</h2>
                     <img className='wanderer' src={wanderer}></img>
                 </Link>
                 <Link to={'/genshin/ASIA'} className='directory-item'>

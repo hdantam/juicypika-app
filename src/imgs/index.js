@@ -15,6 +15,7 @@ import backButton from './nav/backButton.png';
 import wanderer from './genshin/wanderer-splash.png';
 import ayaka from './genshin/ayaka-splash.png';
 import fischl from './genshin/fischl-splash.png';
+import achievement from './genshin/achievement.png';
 
 
 
@@ -35,5 +36,6 @@ export {
     backButton,
     wanderer,
     fischl,
-    ayaka
+    ayaka,
+    achievement
 }
