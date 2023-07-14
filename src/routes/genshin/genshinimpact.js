@@ -125,6 +125,7 @@ function GenshinImpact() {
               {user?.resp.avatars.map((char) => {
                                     //<Link to={`/genshin/${char.id}`}></Link>
                   let color = 'rgb(255, 240, 230)'
+                  
                   if (char.rarity == 4) {
                       color = 'rgb(250, 230, 255)';
                   }
